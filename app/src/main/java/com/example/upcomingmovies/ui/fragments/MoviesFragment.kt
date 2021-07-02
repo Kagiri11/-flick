@@ -14,6 +14,7 @@ import com.example.upcomingmovies.databinding.FragmentMoviesBinding
 import com.example.upcomingmovies.repository.MovieRepository
 import com.example.upcomingmovies.ui.adapters.PopularMoviesAdapter
 import com.example.upcomingmovies.ui.adapters.TopRatedMoviesAdapter
+import com.example.upcomingmovies.ui.adapters.UpcomingMoviesAdapter
 import com.example.upcomingmovies.ui.viewmodels.MoviesViewModel
 import com.example.upcomingmovies.ui.viewmodels.ViewModelFactory
 
@@ -68,6 +69,28 @@ class MoviesFragment : Fragment() {
             }
 
         })
+
+        viewModel.upcomingMovies.observe(viewLifecycleOwner, Observer { response->
+            when(response){
+                is com.example.upcomingmovies.utils.Resource.Success-> response.data?.let { movieResponse ->
+                    binding.rvUpcomingMovies.adapter= UpcomingMoviesAdapter(movieResponse.results)
+                }
+                is com.example.upcomingmovies.utils.Resource.Error -> {
+
+                    response.message?.let { message->
+                        Log.e("MoviesFragment", "the error is $message")
+
+                    }
+                }
+                is com.example.upcomingmovies.utils.Resource.Loading -> {
+                    println("Loading..")
+                }
+            }
+
+        })
+
+
+
 
         return binding.root
     }

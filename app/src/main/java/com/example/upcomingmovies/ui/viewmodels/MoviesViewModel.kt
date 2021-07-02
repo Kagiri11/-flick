@@ -9,16 +9,18 @@ import kotlinx.coroutines.launch
 import retrofit2.Response
 
 class MoviesViewModel(
-     val movieRepository: MovieRepository,
-     application: Application
+    private val movieRepository: MovieRepository,
+    application: Application
 ) : AndroidViewModel(application) {
 
     val popularMovies: MutableLiveData<Resource<MovieResponse>> = MutableLiveData()
     val topRatedMovies : MutableLiveData<Resource<MovieResponse>> = MutableLiveData()
-
+    val upcomingMovies : MutableLiveData<Resource<MovieResponse>> = MutableLiveData()
     init {
         fetchPopularMovies()
         fetchTopRatedMovies()
+        fetchUpcomingMovies()
+
     }
 
     private fun fetchPopularMovies()=viewModelScope.launch {
@@ -32,7 +34,12 @@ class MoviesViewModel(
         topRatedMovies.postValue(Resource.Loading())
         val response = movieRepository.fetchTopRatedMovies()
         topRatedMovies.postValue(handleMoviesResponse(response))
+    }
 
+    private fun fetchUpcomingMovies()=viewModelScope.launch {
+        upcomingMovies.postValue(Resource.Loading())
+        val response = movieRepository.fetchUpcomingMovies()
+        upcomingMovies.postValue(handleMoviesResponse(response))
     }
 
     private fun handleMoviesResponse(response: Response<MovieResponse>):Resource<MovieResponse>{
