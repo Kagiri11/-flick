@@ -1,14 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/primaryColor"
     tools:context=".ui.fragments.MovieDetailsFragment">
 
-   <androidx.appcompat.widget.AppCompatImageView
-       android:id="@+id/iv_specific_movie_image"
-       android:layout_width="match_parent"
-       android:layout_height="250dp"
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/iv_specific_movie_image"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:foreground="@drawable/specific_image_gradient"
+        android:scaleType="centerCrop"
+        android:src="@drawable/wanda"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_specific_movie_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="WandaVision"
+        android:fontFamily="@font/poppins_semibold"
+        android:textSize="20sp"
+        android:textColor="@color/textPrimaryColor"
+        app:layout_constraintBottom_toBottomOf="@id/iv_specific_movie_image"/>
+    <TextView
+        android:id="@+id/tv_specific_movie_year"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_specific_movie_name"
+        tools:text="2015"
+        android:fontFamily="@font/poppins_semibold"
+        android:textSize="18sp"
+        android:textColor="@color/textSecondaryColor"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
