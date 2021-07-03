@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="220dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="20dp">
+        <!--region $CastImage-->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_cast_image"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="0dp"
+            app:cardCornerRadius="80dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_cast_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/wanda" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!--endregion-->
+        <!--region $CastNames-->
+
+        <TextView
+            android:id="@+id/tv_cast_character"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins"
+            app:layout_constraintTop_toTopOf="@id/card_cast_image"
+            tools:text="Actor"
+            android:textColor="@color/textSecondaryColor"
+            app:layout_constraintStart_toEndOf="@id/card_cast_image"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:textSize="15sp"/>
+        <TextView
+            android:id="@+id/tv_cast_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/card_cast_image"
+            android:layout_marginStart="10dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:textColor="@color/titlesTextColor"
+            android:layout_marginBottom="10dp"
+            tools:text="Henry Cavill"
+            app:layout_constraintBottom_toBottomOf="@id/card_cast_image"/>
+        <!--endregion-->
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

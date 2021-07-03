@@ -9,6 +9,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.upcomingmovies.R
 import com.example.upcomingmovies.databinding.FragmentMoviesBinding
 import com.example.upcomingmovies.repository.MovieRepository
@@ -17,11 +19,15 @@ import com.example.upcomingmovies.ui.adapters.TopRatedMoviesAdapter
 import com.example.upcomingmovies.ui.adapters.UpcomingMoviesAdapter
 import com.example.upcomingmovies.ui.viewmodels.MoviesViewModel
 import com.example.upcomingmovies.ui.viewmodels.ViewModelFactory
+import kotlinx.android.synthetic.main.fragment_movies.*
 
 class MoviesFragment : Fragment() {
     private lateinit var viewModel : MoviesViewModel
     private lateinit var viewModelFactory: ViewModelFactory
     private lateinit var binding: FragmentMoviesBinding
+    lateinit var topRatedMoviesAdapter : TopRatedMoviesAdapter
+    lateinit var upcomingMoviesAdapter: UpcomingMoviesAdapter
+    lateinit var popularMoviesAdapter: PopularMoviesAdapter
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -33,6 +39,8 @@ class MoviesFragment : Fragment() {
 
         viewModelFactory=ViewModelFactory(movieRepo,application)
         viewModel = ViewModelProvider(this,viewModelFactory).get(MoviesViewModel::class.java)
+        topRatedMoviesAdapter = TopRatedMoviesAdapter()
+
         viewModel.popularMovies.observe(viewLifecycleOwner, Observer { response->
             when(response){
                 is com.example.upcomingmovies.utils.Resource.Success-> response.data?.let { movieResponse ->
@@ -54,7 +62,16 @@ class MoviesFragment : Fragment() {
         viewModel.topRatedMovies.observe(viewLifecycleOwner, Observer { response->
             when(response){
                 is com.example.upcomingmovies.utils.Resource.Success-> response.data?.let { movieResponse ->
-                    binding.rvTopRatedMovies.adapter= TopRatedMoviesAdapter(movieResponse.results)
+                    topRatedMoviesAdapter.differ.submitList(movieResponse.results)
+                    topRatedMoviesAdapter.setOnItemClickListener {
+                        val bundle = Bundle().apply {
+                            putSerializable("movie",it)
+                        }
+                        findNavController().navigate(R.id.action_moviesFragment_to_movieDetailsFragment,bundle)
+                    }
+                    rv_top_rated_movies.apply {
+                        adapter = topRatedMoviesAdapter
+                    }
                 }
                 is com.example.upcomingmovies.utils.Resource.Error -> {
 
@@ -94,5 +111,14 @@ class MoviesFragment : Fragment() {
 
         return binding.root
     }
+    fun setupTopRatedMoviesRecyclerview(){
+        topRatedMoviesAdapter = TopRatedMoviesAdapter()
+        rv_top_rated_movies.apply {
+            adapter = topRatedMoviesAdapter
+            layoutManager = LinearLayoutManager(activity)
+        }
+
+    }
+
 
 }

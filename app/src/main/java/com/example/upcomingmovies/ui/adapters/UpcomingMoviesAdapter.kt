@@ -30,8 +30,18 @@ class UpcomingMoviesAdapter(private val movies : List<Movie>): RecyclerView.Adap
             tv_upcoming_movie_name.text = movie.title
             tv_upcoming_movie_genres.text = "${movie.genre_ids}"
             Glide.with(this).load(movieImage).into(iv_upcoming_movie)
+            setOnClickListener {
+                onItemClickListener?.let {it(movie)}
+            }
         }
     }
 
     override fun getItemCount(): Int = movies.size
+
+    private var onItemClickListener: ((Movie)->Unit)?=null
+
+    fun setOnItemClickListener(listener: (Movie)->Unit){
+        onItemClickListener=listener
+
+    }
 }

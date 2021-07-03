@@ -31,8 +31,19 @@ class PopularMoviesAdapter(private val movies : List<Movie>): RecyclerView.Adapt
             tv_movie_name.text =movie.title
             tv_movie_rating.text=movie.vote_average.toString()
             Glide.with(this).load(movieImage).into(this.ivMovieImage)
+            setOnClickListener {
+                onItemClickListener?.let {
+                    it(movie)
+                }
+            }
         }
     }
 
     override fun getItemCount(): Int = movies.size
+
+    private var onItemClickListener: ((Movie)->Unit)?=null
+
+    fun setOnItemClickListener(listener:(Movie)->Unit){
+        onItemClickListener = listener
+    }
 }

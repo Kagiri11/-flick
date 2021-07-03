@@ -16,6 +16,10 @@ class MoviesViewModel(
     val popularMovies: MutableLiveData<Resource<MovieResponse>> = MutableLiveData()
     val topRatedMovies : MutableLiveData<Resource<MovieResponse>> = MutableLiveData()
     val upcomingMovies : MutableLiveData<Resource<MovieResponse>> = MutableLiveData()
+
+    val movieDetails = liveData {
+        emit(movieRepository.fetchMovieDetails())
+    }
     init {
         fetchPopularMovies()
         fetchTopRatedMovies()
@@ -41,6 +45,7 @@ class MoviesViewModel(
         val response = movieRepository.fetchUpcomingMovies()
         upcomingMovies.postValue(handleMoviesResponse(response))
     }
+    
 
     private fun handleMoviesResponse(response: Response<MovieResponse>):Resource<MovieResponse>{
         if (response.isSuccessful){
