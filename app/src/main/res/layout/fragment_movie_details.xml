@@ -7,11 +7,14 @@
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.constraintlayout.motion.widget.MotionLayout
+        android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/primaryColor"
+        app:layoutDescription="@xml/fragment_movie_details_xml_constraintlayout_scene"
         tools:context=".ui.fragments.MovieDetailsFragment">
+
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/iv_specific_movie_image"
@@ -19,8 +22,17 @@
             android:layout_height="250dp"
             android:foreground="@drawable/specific_image_gradient"
             android:scaleType="centerCrop"
-            android:src="@drawable/wanda"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_back"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/ic_back"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -31,6 +43,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_semibold"
+            android:gravity="center"
             android:textColor="@color/white"
             android:textSize="22sp"
             app:layout_constraintBottom_toBottomOf="@id/iv_specific_movie_image"
@@ -62,10 +75,25 @@
             app:layout_constraintTop_toBottomOf="@id/tv_specific_movie_year"
             tools:text="Robert Stromberg" />
 
+        <TextView
+            android:id="@+id/tv_specific_movie_rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:textColor="@color/assistiveColor"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@id/tv_specific_movie_director"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_specific_movie_director"
+            tools:text="8.0" />
+
+
         <!--endregion-->
 
         <!--region $ScrollableRegion-->
         <androidx.core.widget.NestedScrollView
+            android:id="@+id/nestedScrollView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -95,64 +123,118 @@
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="10dp"
                     android:fontFamily="@font/poppins"
-                    app:layout_constraintStart_toStartOf="parent"
+                    android:textColor="@color/textSecondaryColor"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_synopsis"
-                    tools:text="Determined to ensure Superman's ultimate sacrifice was not in vain, Bruce Wayne aligns forces with Diana Prince with plans to recruit a team of metahumans to protect the world from an approaching threat of catastrophic proportions."
-                    android:textColor="@color/textSecondaryColor" />
+                    tools:text="Determined to ensure Superman's ultimate sacrifice was not in vain, Bruce Wayne aligns forces with Diana Prince with plans to recruit a team of metahumans to protect the world from an approaching threat of catastrophic proportions." />
                 <!--endregion-->
                 <!--region $MovieCastDetails-->
                 <TextView
                     android:id="@+id/tv_cast"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Cast"
-                    android:textSize="19sp"
-                    android:fontFamily="@font/poppins_semibold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_movie_synopsis"
-                    android:textColor="@color/titlesTextColor"
                     android:layout_marginStart="20dp"
-                    android:layout_marginTop="10dp" />
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="Cast"
+                    android:textColor="@color/titlesTextColor"
+                    android:textSize="19sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_movie_synopsis" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_movie_cast"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    tools:listitem="@layout/item_movie_cast"
+                    android:orientation="horizontal"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintTop_toBottomOf="@id/tv_cast"
-                    android:orientation="horizontal" />
+                    tools:listitem="@layout/item_movie_cast" />
                 <!--endregion-->
                 <!--region $MovieReviews-->
                 <TextView
                     android:id="@+id/tv_reviews"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="19sp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/poppins_semibold"
                     android:text="Reviews"
                     android:textColor="@color/titlesTextColor"
-                    android:fontFamily="@font/poppins_semibold"
+                    android:textSize="19sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/rv_movie_cast"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="10dp" />
+                    app:layout_constraintTop_toBottomOf="@id/rv_movie_cast" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_reviews"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintTop_toBottomOf="@id/tv_reviews"
-                    tools:itemCount="3"
+                    tools:itemCount="1"
                     tools:listitem="@layout/item_movie_review" />
 
 
                 <!--endregion-->
+                <!--region $SimilarMovies-->
+                <TextView
+                    android:id="@+id/tv_similar_movies"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="Similar Movies"
+                    android:textColor="@color/titlesTextColor"
+                    android:textSize="19sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/rv_reviews" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_similar_movies"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="40dp"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintTop_toBottomOf="@id/tv_similar_movies"
+                    tools:listitem="@layout/item_similar_movies" />
+                <!--endregion-->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:background="@android:color/transparent"
+                    app:cardBackgroundColor="@android:color/transparent"
+                    app:cardElevation="0dp"
+
+                    app:layout_constraintTop_toBottomOf="@id/rv_similar_movies">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/tv_message"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins"
+                            android:gravity="center"
+                            android:text="This app was created by Kagiri Charles and is \n still under development"
+                            android:textColor="@color/assistiveColor"
+                            android:textSize="15sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.core.widget.NestedScrollView>
         <!--endregion-->
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.motion.widget.MotionLayout>
 </layout>

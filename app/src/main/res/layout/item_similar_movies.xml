@@ -23,7 +23,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/iv_top_rated_movie"
+                android:id="@+id/iv_similar_movie"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 tools:src="@drawable/ic_network"
@@ -33,7 +33,7 @@
         </com.google.android.material.card.MaterialCardView>
 
         <TextView
-            android:id="@+id/tv_top_rated_movie_name"
+            android:id="@+id/tv_similar_movie_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
@@ -46,18 +46,17 @@
             app:layout_constraintTop_toBottomOf="@id/card_top_rated_movie_image" />
 
         <TextView
-            android:id="@+id/tv_top_rated_movie_genres"
+            android:id="@+id/tv_similar_movies_rating"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:visibility="invisible"
-            android:textColor="@color/textSecondaryColor"
-            android:gravity="start"
+            android:textColor="@color/assistiveColor"
+            android:gravity="center"
             android:textSize="8sp"
             android:fontFamily="@font/poppins_semibold"
             tools:text="ghd dkhd ugc"
-            app:layout_constraintTop_toBottomOf="@id/tv_top_rated_movie_name" />
+            app:layout_constraintTop_toBottomOf="@id/tv_similar_movie_name" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

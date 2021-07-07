@@ -1,6 +1,6 @@
 package com.example.upcomingmovies.models
 
-data class Genre(
-    val id: Int,
+data class ProductionCountry(
+    val iso_3166_1: String,
     val name: String
 )

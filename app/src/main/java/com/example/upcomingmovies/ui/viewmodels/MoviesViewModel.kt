@@ -17,14 +17,10 @@ class MoviesViewModel(
     val topRatedMovies : MutableLiveData<Resource<MovieResponse>> = MutableLiveData()
     val upcomingMovies : MutableLiveData<Resource<MovieResponse>> = MutableLiveData()
 
-    val movieDetails = liveData {
-        emit(movieRepository.fetchMovieDetails())
-    }
     init {
+        fetchUpcomingMovies()
         fetchPopularMovies()
         fetchTopRatedMovies()
-        fetchUpcomingMovies()
-
     }
 
     private fun fetchPopularMovies()=viewModelScope.launch {

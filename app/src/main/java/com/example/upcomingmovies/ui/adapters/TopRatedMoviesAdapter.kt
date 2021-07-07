@@ -1,5 +1,6 @@
 package com.example.upcomingmovies.ui.adapters
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -42,14 +43,21 @@ class TopRatedMoviesAdapter: RecyclerView.Adapter<TopRatedMoviesAdapter.TopRated
             tv_top_rated_movie_name.text = movie.title
             tv_top_rated_movie_genres.text = "${movie.genre_ids}"
             Glide.with(this).load(movieImage).into(iv_top_rated_movie)
+            setOnClickListener {
+                onItemClickListener?.let {
+                    it(movie)
+                }
+            }
         }
+    }
+
+    private var onItemClickListener: ((Movie)->Unit)?=null
+
+    fun setOnItemClickListener(listener:(Movie)->Unit){
+        onItemClickListener=listener
     }
 
     override fun getItemCount(): Int = differ.currentList.size
 
-    private var onItemClickListener: ((Movie)->Unit)?=null
 
-    fun setOnItemClickListener(listener: (Movie)->Unit){
-        onItemClickListener=listener
-    }
 }

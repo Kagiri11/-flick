@@ -15,6 +15,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var moviesViewModel: MoviesViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setTheme(R.style.Theme_UpcomingMovies)
         setContentView(R.layout.activity_main)
         val moviesRepository = MovieRepository()
         val application = requireNotNull(this).application

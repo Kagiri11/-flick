@@ -2,8 +2,15 @@
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="Upcoming Movies"
-        android:id="@+id/movies"
-        android:icon="@drawable/ic_movies"
+    <item android:title="Movies"
+        android:id="@+id/moviesFragment"
+        android:icon="@drawable/ic_movie"
         />
+    <item android:title="Search"
+        android:id="@+id/searchFragment"
+        android:icon="@drawable/ic_search"/>
+    <item android:title="Favourites"
+        android:id="@+id/favouritesFragment"
+        android:icon="@drawable/ic_favorite"/>
+
 </menu>
