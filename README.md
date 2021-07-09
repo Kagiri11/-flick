@@ -11,4 +11,15 @@ an Android app that consumes the TMDB API to get details about upcoming movies, 
 -[Prerequisite](##prerequisite)
 
 ## Prerequisite
-Say you want to use TMDB in your future or upcoming projects, what you'll need is an API key which is really easy to generate. You will want to visit the site [here](https://developers.themoviedb.org/3/getting-started/introduction) and just follow through the guide to creating your key.
+Say you want to use TMDB in your future or upcoming projects, what you'll need is an API key, which is really easy to generate. You will want to visit the site [here](https://developers.themoviedb.org/3/getting-started/introduction) and just follow through the guide to creating your key.
+
+## MVVM and why that architecture
+
+
+## Retrofit
+
+
+## Motion Layout
+
+
+## Still cooking...
