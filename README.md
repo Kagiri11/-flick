@@ -6,3 +6,8 @@ an Android app that consumes the TMDB API to get details about upcoming movies, 
         1. To understand how to use retrofit to consume an API.
         2. To solidify my knowledge on the MVVM architecture.
         3. Get to use some of the android jetpack components. 
+
+# Table of Contents
+[Prerequisite](##Prerequisite)
+
+## Prerequisite
