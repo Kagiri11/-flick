@@ -8,10 +8,10 @@ an Android app that consumes the TMDB API to get details about upcoming movies, 
         3. Get to use some of the android jetpack components. 
 
 # Table of Contents
-        *[Prerequisite](##prerequisite)
-        *[MVVM and why that pattern](##MVVM-and-why-the-pattern)
-        *[Retrofit](##Retrofit)
-        *[Motion Layout](##MotionLayout)
+        * [Prerequisite](##prerequisite)
+        * [MVVM and why that pattern](##MVVM-and-why-the-pattern)
+        * [Retrofit](##Retrofit)
+        * [Motion Layout](##MotionLayout)
 
 ## Prerequisite
 Say you want to use TMDB in your future or upcoming projects, what you'll need is an API key, which is really easy to generate. You will want to visit the site [here](https://developers.themoviedb.org/3/getting-started/introduction) and just follow through the guide to creating your key.
