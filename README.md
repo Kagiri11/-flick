@@ -8,7 +8,7 @@ an Android app that consumes the TMDB API to get details about upcoming movies, 
         3. Get to use some of the android jetpack components. 
 
 # Table of Contents
-        * [Prerequisite](##prerequisite)
+        ..* The [Prerequisite](##prerequisite)
         * [MVVM and why that pattern](##MVVM-and-why-the-pattern)
         * [Retrofit](##Retrofit)
         * [Motion Layout](##MotionLayout)
