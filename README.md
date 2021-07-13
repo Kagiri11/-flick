@@ -24,4 +24,4 @@ The Model I like to think of it as a sort of data handler class. The data in the
 
 
 ## Still cooking...
-I am still in the process of finishing up this app, I am yet to implement the search and favourites screens. Oh! and for the favorites, I will employ Room to make things easier. I have a repository called MyQuotes where I talk about an app implemented Room with -if interested, please do check it out.
+I am still in the process of finishing up this app, I am yet to implement the search and favourites screens. Oh! and for the favorites, I will employ Room to make things easier. I have a repository called MyQuotes where I talk about an app implemented Room with -if interested, please do check it out. 
