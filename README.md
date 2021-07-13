@@ -23,6 +23,7 @@ As it is described in its official [documentation](https://square.github.io/retr
 ### Setup:
 
  * Create model classes
+
 The best way to use retrofit is first of all, create the model classes that your application needs. These will be fleshed up by the JSON body from the network calls made.
 
  * Create the API service
