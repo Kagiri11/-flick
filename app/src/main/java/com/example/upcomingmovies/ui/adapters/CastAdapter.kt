@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.item_movie_cast.view.*
 import kotlinx.android.synthetic.main.item_movie_cast.view.iv_cast_image
 import kotlinx.android.synthetic.main.item_movie_review.view.*
 
-class CastAdapter: RecyclerView.Adapter<CastAdapter.CastViewHolder>(){
+class   CastAdapter: RecyclerView.Adapter<CastAdapter.CastViewHolder>(){
     class CastViewHolder(private val binding: ItemMovieCastBinding): RecyclerView.ViewHolder(binding.root)
     private val differCallback = object: DiffUtil.ItemCallback<Cast>(){
         override fun areItemsTheSame(oldItem: Cast, newItem: Cast): Boolean {
