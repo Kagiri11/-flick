@@ -20,13 +20,13 @@ The Model I like to think of it as a sort of data handler class. The data in the
 ## Retrofit
 As it is described in its official [documentation](https://square.github.io/retrofit/), retrofit is a type safe http client that generally is there to help us interact with and make network calls in a much more clean and simple manner. Powerful features such as mocking of responses and custom headers come out of the box when dealing with Retrofit. 
 
-        ### Setup:
+### Setup:
 
-        *Create model classes
-        The best way to use retrofit is first of all, create the model classes that your application needs. These will be fleshed up by the JSON body from the network calls made.
+ * Create model classes
+The best way to use retrofit is first of all, create the model classes that your application needs. These will be fleshed up by the JSON body from the network calls made.
 
-        *Create the API service
-        Setup an interface to host all the HTTP calls to be performed by your application.
+ * Create the API service
+Setup an interface to host all the HTTP calls to be performed by your application.
 
 
 ## Motion Layout
