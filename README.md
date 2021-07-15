@@ -8,10 +8,7 @@ an Android app that consumes the TMDB API to get details about upcoming movies, 
         3. Get to use some of the android jetpack components. 
 
 ## Screenshots
-        <p align="center">
-        <img  src="https://ibb.co/khKWKhC"/>
-
-        </p>
+<p align="center"><img src="https://ibb.co/khKWKhC" alt="NotFlix" height="31px"></p>
 
 
 ## Prerequisite
