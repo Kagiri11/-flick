@@ -8,7 +8,7 @@ an Android app that consumes the TMDB API to get details about upcoming movies, 
         3. Get to use some of the android jetpack components. 
 
 ## Screenshots
-![alt text](https://ibb.co/khKWKhC)
+[images]:https://ibb.co/khKWKhC
 
 
 ## Prerequisite
