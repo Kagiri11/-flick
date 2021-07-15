@@ -8,8 +8,10 @@ an Android app that consumes the TMDB API to get details about upcoming movies, 
         3. Get to use some of the android jetpack components. 
 
 ## Screenshots
-<p align="left"><img src="https://i.ibb.co/br181r9/splash.jpg" height="400px"></p>
-<p align="center"><img src="https://i.ibb.co/ZKbmYny/home.jpg" height="400px"></p>
+<p>
+<img align="left" src="https://i.ibb.co/br181r9/splash.jpg" height="400px">
+<img align="center" src="https://i.ibb.co/ZKbmYny/home.jpg" height="400px">
+</p>
 
 ## Prerequisite
 Say you want to use TMDB in your future or upcoming projects, what you'll need is an API key, which is really easy to generate. You will want to visit the site [here](https://developers.themoviedb.org/3/getting-started/introduction) and just follow through the guide to creating your key.
