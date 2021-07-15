@@ -7,6 +7,9 @@ an Android app that consumes the TMDB API to get details about upcoming movies, 
         2. To solidify my knowledge on the MVVM architecture.
         3. Get to use some of the android jetpack components. 
 
+## Screenshots
+![alt text](https://ibb.co/khKWKhC)
+
 
 ## Prerequisite
 Say you want to use TMDB in your future or upcoming projects, what you'll need is an API key, which is really easy to generate. You will want to visit the site [here](https://developers.themoviedb.org/3/getting-started/introduction) and just follow through the guide to creating your key.
