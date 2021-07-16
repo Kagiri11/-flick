@@ -10,6 +10,7 @@ an Android app that consumes the TMDB API to get details about upcoming movies, 
 ## Screenshots
 <p align="center">
 <img  src="https://i.ibb.co/br181r9/splash.jpg" height="400px">
+
 <img  src="https://i.ibb.co/ZKbmYny/home.jpg" height="400px">
 <img  src="https://i.ibb.co/bFpDY2p/details.jpg" height="400px">
 </p>
