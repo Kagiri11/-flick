@@ -15,7 +15,7 @@ import com.example.upcomingmovies.models.Movie
 import kotlinx.android.synthetic.main.item_movie.view.*
 
 class PopularMoviesAdapter: RecyclerView.Adapter<PopularMoviesAdapter.PopularMoviesViewHolder>(){
-    class PopularMoviesViewHolder(private val binding: ItemMovieBinding): RecyclerView.ViewHolder(binding.root)
+    class PopularMoviesViewHolder(binding: ItemMovieBinding): RecyclerView.ViewHolder(binding.root)
     private val differCallback = object: DiffUtil.ItemCallback<Movie>(){
         override fun areItemsTheSame(oldItem: Movie, newItem: Movie): Boolean {
             return oldItem.id==newItem.id
