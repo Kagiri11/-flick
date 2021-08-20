@@ -7,10 +7,16 @@ an Android app that consumes the TMDB API to get details about upcoming movies, 
         2. To solidify my knowledge on the MVVM architecture.
         3. Get to use some of the android jetpack components. 
 
+## Contents:
+- Screenshots
+- Prerequisite
+- MVVM
+- Retrofit
+- Motion Layout
+
 ## Screenshots
 <p align="center">
 <img  src="https://i.ibb.co/br181r9/splash.jpg" height="400px">
-
 <img  src="https://i.ibb.co/ZKbmYny/home.jpg" height="400px">
 <img  src="https://i.ibb.co/bFpDY2p/details.jpg" height="400px">
 </p>
