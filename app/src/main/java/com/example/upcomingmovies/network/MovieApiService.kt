@@ -15,21 +15,27 @@ interface MovieApiService {
     @GET("movie/popular")
     suspend fun fetchMovies(
         @Query("api_key")apiKey:String = API_KEY,
-        @Query("page")pageNumber:Int=2,
+        @Query("page")pageNumber:Int=1,
         @Query("language")language :String = "en"
+    ):Response<MovieResponse>
+
+    @GET("search/movie")
+    suspend fun searchMovies(
+        @Query("query")query :String,
+        @Query("api_key")apiKey:String = API_KEY
     ):Response<MovieResponse>
 
     @GET("movie/top_rated")
     suspend fun fetchTopRatedMovies(
         @Query("api_key")apiKey: String= API_KEY,
-        @Query("page")pageNumber: Int = 3,
+        @Query("page")pageNumber: Int = 1,
         @Query("language")language :String = "en"
     ):Response<MovieResponse>
 
     @GET("movie/upcoming")
     suspend fun fetchUpcomingMovies(
         @Query("api_key")apiKey:String = API_KEY,
-        @Query("page")pageNumber: Int=3,
+        @Query("page")pageNumber: Int=1,
         @Query("language")language :String = "en"
     ):Response<MovieResponse>
 

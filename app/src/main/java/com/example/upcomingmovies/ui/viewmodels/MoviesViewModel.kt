@@ -23,6 +23,10 @@ class MoviesViewModel(
         fetchTopRatedMovies()
     }
 
+    private fun searchMovies(query:String)=viewModelScope.launch {
+        movieRepository.searchMovies(query)
+    }
+
     private fun fetchPopularMovies()=viewModelScope.launch {
         popularMovies.postValue(Resource.Loading())
         val response = movieRepository.fetchPopularMovies()
@@ -41,13 +45,11 @@ class MoviesViewModel(
         val response = movieRepository.fetchUpcomingMovies()
         upcomingMovies.postValue(handleMoviesResponse(response))
     }
-    
 
     private fun handleMoviesResponse(response: Response<MovieResponse>):Resource<MovieResponse>{
         if (response.isSuccessful){
             response.body()?.let { resultResponse->
                 return Resource.Success(resultResponse)
-
             }
         }
         return Resource.Error(response.message())
