@@ -64,7 +64,6 @@ class MoviesFragment : Fragment() {
                     rv_popular_movies.adapter = popularMoviesAdapter
                 }
                 is Resource.Error -> {
-
                     response.message?.let { message ->
                         Log.e("MoviesFragment", "the error is $message")
 

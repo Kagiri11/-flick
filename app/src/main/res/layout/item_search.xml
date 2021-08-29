@@ -15,6 +15,7 @@
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/iv_movie_search"
             android:layout_width="50dp"
+            android:scaleType="fitXY"
             android:layout_height="50dp"
             android:src="@drawable/ic_launcher_background"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -33,6 +34,7 @@
             app:layout_constraintTop_toTopOf="@id/iv_movie_search" />
 
         <TextView
+            android:id="@+id/tv_searchedMovie_year"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"
