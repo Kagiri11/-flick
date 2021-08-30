@@ -36,6 +36,25 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+
+        <com.like.LikeButton
+            android:id="@+id/favourite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:icon_size="25dp"
+            app:liked="false"
+            app:icon_type="heart"
+            app:circle_start_color="@color/white"
+            app:circle_end_color="@color/assistiveColor"
+            app:like_drawable="@drawable/ic_favorite"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/iv_back"
+            app:layout_constraintBottom_toBottomOf="@id/iv_back"
+            android:layout_marginEnd="20dp"
+            app:is_enabled="true"
+            app:unlike_drawable="@drawable/ic_favorite2"/>
+
+
         <!--region $MovieFrontDetails-->
 
         <TextView

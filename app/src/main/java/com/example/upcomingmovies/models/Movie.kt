@@ -1,12 +1,16 @@
 package com.example.upcomingmovies.models
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import java.io.Serializable
 
+@Entity(tableName = "movie")
 data class Movie(
+    @PrimaryKey(autoGenerate = false)
+    val id: Int,
     val adult: Boolean,
     val backdrop_path: String,
     val genre_ids: List<Int>,
-    val id: Int,
     val original_language: String,
     val original_title: String,
     val overview: String,

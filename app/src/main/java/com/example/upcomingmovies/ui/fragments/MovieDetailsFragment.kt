@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -26,6 +27,7 @@ import com.example.upcomingmovies.ui.viewmodels.MovieDetailsViewModelFactory
 import com.example.upcomingmovies.ui.viewmodels.MoviesViewModel
 import com.example.upcomingmovies.ui.viewmodels.ViewModelFactory
 import com.example.upcomingmovies.utils.Resource
+import com.like.OnLikeListener
 import kotlinx.android.synthetic.main.fragment_movie_details.*
 
 
@@ -39,7 +41,7 @@ class MovieDetailsFragment : Fragment() {
     private val reviewsAdapter = ReviewsAdapter()
     lateinit var binding : FragmentMovieDetailsBinding
     private val args :  MovieDetailsFragmentArgs by navArgs()
-    @SuppressLint("SetTextI18n")
+    @SuppressLint("SetTextI18n", "ResourceAsColor")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -60,6 +62,10 @@ class MovieDetailsFragment : Fragment() {
 
         binding.ivBack.setOnClickListener {
             findNavController().navigateUp()
+        }
+        binding.favourite.setOnClickListener {
+            detailsViewModel.addFavourite(movie)
+            Toast.makeText(this.requireContext(),"${movie.title} added to favourites",Toast.LENGTH_LONG).show()
         }
 
         detailsViewModel.apply {

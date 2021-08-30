@@ -1,5 +1,7 @@
 package com.example.upcomingmovies.repository
 
+import com.example.upcomingmovies.local.MovieDatabase
+import com.example.upcomingmovies.models.Movie
 import com.example.upcomingmovies.network.RetrofitInstance
 
 class MovieRepository {
@@ -19,4 +21,8 @@ class MovieRepository {
     suspend fun fetchMovieReviews(movieId:Int)=RetrofitInstance.api.fetchMovieReviews(movieId)
 
     suspend fun searchMovies(query:String) = RetrofitInstance.api.searchMovies(query)
+
+    fun getMovies()= MovieDatabase.INSTANCE?.movieDatabaseDao?.getFavourites()
+
+    suspend fun addFavourite(movie: Movie) = MovieDatabase.INSTANCE?.movieDatabaseDao?.addFavourite(movie)
 }

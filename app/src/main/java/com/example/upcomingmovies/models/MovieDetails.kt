@@ -1,5 +1,8 @@
 package com.example.upcomingmovies.models
 
+import androidx.room.Entity
+
+@Entity
 data class MovieDetails(
     val adult: Boolean,
     val backdrop_path: String,

@@ -2,10 +2,7 @@ package com.example.upcomingmovies.ui.viewmodels
 
 import android.app.Application
 import androidx.lifecycle.*
-import com.example.upcomingmovies.models.CastDetails
-import com.example.upcomingmovies.models.MovieDetails
-import com.example.upcomingmovies.models.MovieResponse
-import com.example.upcomingmovies.models.ReviewResponse
+import com.example.upcomingmovies.models.*
 import com.example.upcomingmovies.repository.MovieRepository
 import com.example.upcomingmovies.utils.Resource
 import kotlinx.coroutines.launch
@@ -46,6 +43,12 @@ class MovieDetailsViewModel(
     fun getMovieCast(movieId: Int)=viewModelScope.launch {
         val cast = movieRepository.fetchMovieCast(movieId)
         _cast.postValue(handleCastResponse(cast))
+    }
+
+    fun addFavourite(movie: Movie){
+        viewModelScope.launch {
+            movieRepository.addFavourite(movie)
+        }
     }
 
 
