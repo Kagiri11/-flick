@@ -1,4 +1,4 @@
-package com.example.upcomingmovies.network
+package com.example.upcomingmovies.data.network
 
 import com.example.upcomingmovies.models.CastDetails
 import com.example.upcomingmovies.models.MovieDetails

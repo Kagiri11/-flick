@@ -1,11 +1,11 @@
-package com.example.upcomingmovies.models
+package com.example.upcomingmovies.data.mappers
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import java.io.Serializable
 
-
-data class Movie(
+@Entity(tableName = "cached_movie")
+data class CachedMovie(
+    @PrimaryKey(autoGenerate = false)
     val id: Int,
     val adult: Boolean,
     val backdrop_path: String,
@@ -20,4 +20,4 @@ data class Movie(
     val video: Boolean,
     val vote_average: Double,
     val vote_count: Int
-):Serializable
+)

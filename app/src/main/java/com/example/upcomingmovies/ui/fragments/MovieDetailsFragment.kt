@@ -30,7 +30,6 @@ import com.example.upcomingmovies.utils.Resource
 import com.like.OnLikeListener
 import kotlinx.android.synthetic.main.fragment_movie_details.*
 
-
 class MovieDetailsFragment : Fragment() {
     private lateinit var moviesViewModel : MoviesViewModel
     lateinit var detailsViewModel: MovieDetailsViewModel
@@ -64,7 +63,7 @@ class MovieDetailsFragment : Fragment() {
             findNavController().navigateUp()
         }
         binding.favourite.setOnClickListener {
-            detailsViewModel.addFavourite(movie)
+//            detailsViewModel.addFavourite(movie)
             Toast.makeText(this.requireContext(),"${movie.title} added to favourites",Toast.LENGTH_LONG).show()
         }
 

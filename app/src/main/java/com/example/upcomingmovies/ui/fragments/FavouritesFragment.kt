@@ -25,10 +25,10 @@ class FavouritesFragment : Fragment() {
     ): View? {
         binding= DataBindingUtil.inflate(inflater,R.layout.fragment_favourites, container, false)
 
-        viewModel.favouriteMovies.observe(viewLifecycleOwner,{
-            adapter.differ.submitList(it)
-            binding.rvFavourites.adapter= adapter
-        })
+//        viewModel.favouriteMovies.observe(viewLifecycleOwner,{
+//            adapter.differ.submitList(it)
+//            binding.rvFavourites.adapter= adapter
+//        })
 
         return binding.root
     }

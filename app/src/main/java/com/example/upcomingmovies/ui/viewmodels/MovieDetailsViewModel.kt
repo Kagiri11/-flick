@@ -45,11 +45,11 @@ class MovieDetailsViewModel(
         _cast.postValue(handleCastResponse(cast))
     }
 
-    fun addFavourite(movie: Movie){
-        viewModelScope.launch {
-            movieRepository.addFavourite(movie)
-        }
-    }
+//    fun addFavourite(movie: Movie){
+//        viewModelScope.launch {
+//            movieRepository.addFavourite(movie)
+//        }
+//    }
 
 
     private fun handleDetailResponse(response: Response<MovieDetails>): Resource<MovieDetails> {

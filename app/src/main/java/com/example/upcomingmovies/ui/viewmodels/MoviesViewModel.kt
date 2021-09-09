@@ -21,9 +21,9 @@ class MoviesViewModel(
     private val _searchedMovies: MutableLiveData<Resource<MovieResponse>> = MutableLiveData()
     val searchedMovies: LiveData<Resource<MovieResponse>> = _searchedMovies
 
-    val favouriteMovies = liveData {
-        emit(movieRepository.getMovies())
-    }
+//    val favouriteMovies = liveData {
+//        emit(movieRepository.getMovies())
+//    }
 
     init {
         fetchUpcomingMovies()
@@ -36,8 +36,8 @@ class MoviesViewModel(
         val response = movieRepository.searchMovies(query)
         _searchedMovies.postValue(handleMoviesResponse(response))
     }
-
-    fun getFavourites(): List<Movie>? = movieRepository.getMovies()
+//
+//    fun getFavourites(): List<Movie>? = movieRepository.getMovies()
 
 
 

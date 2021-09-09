@@ -1,8 +1,10 @@
 package com.example.upcomingmovies.repository
 
-import com.example.upcomingmovies.local.MovieDatabase
+
+import com.example.upcomingmovies.data.local.MovieDatabase
+import com.example.upcomingmovies.data.mappers.CachedMovie
+import com.example.upcomingmovies.data.network.RetrofitInstance
 import com.example.upcomingmovies.models.Movie
-import com.example.upcomingmovies.network.RetrofitInstance
 
 class MovieRepository {
 
@@ -24,5 +26,5 @@ class MovieRepository {
 
     fun getMovies()= MovieDatabase.INSTANCE?.movieDatabaseDao?.getFavourites()
 
-    suspend fun addFavourite(movie: Movie) = MovieDatabase.INSTANCE?.movieDatabaseDao?.addFavourite(movie)
+    suspend fun addFavourite(movie: CachedMovie) = MovieDatabase.INSTANCE?.movieDatabaseDao?.addFavourite(movie)
 }
