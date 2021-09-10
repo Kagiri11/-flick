@@ -46,14 +46,12 @@ Setup an interface to host all the HTTP calls to be performed by your applicatio
  * Provide the instance of Retrofit
 
  If you are using dependency injection, you can provide a dependency for the instance of Retrofit in your network module. So simply its just the instrument that will do the literal interal with with the API as you will provide it the base url, converter factory and a client if need be.
-        ```
-        class RetrofitInstance{
+        ``` class RetrofitInstance{
                 val retrofit = Retrofit.Builder().baseUrl(BASE_URL)
                         .addConverterFactory(GSonConverterFactory.create())
                         .build()
                 val api = retrofit.create(NetworkService::class.java)
         }
-
         ```
 
 
