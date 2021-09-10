@@ -62,7 +62,7 @@ interface SongsNetwork{
 }
 ```
 
-The methods GET, POST, PATCH, PUT, DELETE HEAD and OPTIONS are provided by Retrofit 2 and they do try to do the basic CRUD operations as you would with SQL *in a way*
+The methods **GET**, **POST**, **PATCH**, **PUT**, **DELETE** **HEAD** and **OPTIONS** are provided by Retrofit 2 and they do try to do the basic CRUD operations as you would with SQL *in a way*
 
  * **Provide the instance of Retrofit**
 
