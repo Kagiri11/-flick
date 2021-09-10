@@ -55,10 +55,10 @@ Setup an interface to host all the HTTP calls to be performed by your applicatio
 interface SongsNetwork{
 
         @GET(songs/pop)
-        suspend fun fetchPopSongs():Response<List<Songs>>
+        suspend fun fetchPopSongs():Response<List<Song>>
 
         @GET(songs/rock)
-        suspend fun fetchRockSongs():Response<List<Songs>>
+        suspend fun fetchRockSongs():Response<List<Song>>
 }
 ```
 
@@ -66,7 +66,7 @@ The methods GET, POST, PATCH, PUT, DELETE HEAD and OPTIONS are provided by Retro
 
  * **Provide the instance of Retrofit**
 
- If you are using dependency injection, you can provide a dependency for the instance of Retrofit in your network module. So simply its just the instrument that will do the literal interal with with the API as you will provide it the base url, converter factory and a client if need be.
+ If you are using dependency injection, you can provide a dependency for the instance of Retrofit in your network module. So simply its just the instrument that will do the literal interaction with the API as you will provide it the base url, converter factory and a client if need be.
 
 ``` 
 class RetrofitInstance{
