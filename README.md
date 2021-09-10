@@ -35,19 +35,41 @@ As it is described in its official [documentation](https://square.github.io/retr
 
 ### Setup:
 
- * Create model classes
+ * **Create model classes**
 
 To use retrofit first of all create the model classes (data classes) that your application needs. These will be fleshed up by the JSON body from the network calls made.
+ ```
+ data class Song(
+         val artist:String,
+         val runTime: Int,
+         val releaseDate: String,
+         val albumArt:String
+ )
+ ```
 
- * Create the API service 
+ * **Create the API service**
 
 Setup an interface to host all the HTTP calls to be performed by your application.
 
- * Provide the instance of Retrofit
+```
+interface SongsNetwork{
+
+        @GET(songs/pop)
+        suspend fun fetchPopSongs():Response<List<Songs>>
+
+        @GET(songs/rock)
+        suspend fun fetchRockSongs():Response<List<Songs>>
+}
+```
+
+The methods GET, POST, PATCH, PUT, DELETE HEAD and OPTIONS are provided by Retrofit 2 and they do try to do the basic CRUD operations as you would with SQL *in a way*
+
+ * **Provide the instance of Retrofit**
 
  If you are using dependency injection, you can provide a dependency for the instance of Retrofit in your network module. So simply its just the instrument that will do the literal interal with with the API as you will provide it the base url, converter factory and a client if need be.
 
-``` class RetrofitInstance{
+``` 
+class RetrofitInstance{
                 
         val retrofit = Retrofit.Builder().baseUrl(BASE_URL)
                 .addConverterFactory(GSonConverterFactory.create())
