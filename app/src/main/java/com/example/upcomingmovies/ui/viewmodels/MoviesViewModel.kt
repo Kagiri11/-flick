@@ -1,19 +1,17 @@
 package com.example.upcomingmovies.ui.viewmodels
 
-import android.app.Application
+
 import androidx.lifecycle.*
-import com.example.upcomingmovies.models.Movie
+import com.example.upcomingmovies.data.local.CachedMovie
+import com.example.upcomingmovies.data.local.MovieDatabaseDao
 import com.example.upcomingmovies.models.MovieResponse
 import com.example.upcomingmovies.repository.MovieRepository
 import com.example.upcomingmovies.utils.Resource
 import kotlinx.coroutines.launch
 import retrofit2.Response
 
-class MoviesViewModel(
-    private val movieRepository: MovieRepository,
-    application: Application
-) : AndroidViewModel(application) {
-
+class MoviesViewModel() : ViewModel() {
+    private val movieRepository=MovieRepository()
     val popularMovies: MutableLiveData<Resource<MovieResponse>> = MutableLiveData()
     val topRatedMovies: MutableLiveData<Resource<MovieResponse>> = MutableLiveData()
     val upcomingMovies: MutableLiveData<Resource<MovieResponse>> = MutableLiveData()
@@ -21,9 +19,13 @@ class MoviesViewModel(
     private val _searchedMovies: MutableLiveData<Resource<MovieResponse>> = MutableLiveData()
     val searchedMovies: LiveData<Resource<MovieResponse>> = _searchedMovies
 
-//    val favouriteMovies = liveData {
-//        emit(movieRepository.getMovies())
-//    }
+    val favouriteMoviesCount = liveData {
+        emit(movieRepository.getMoviesCount())
+    }
+
+    val favouriteMovies = liveData {
+        emit(movieRepository.getMovies())
+    }
 
     init {
         fetchUpcomingMovies()
@@ -36,16 +38,14 @@ class MoviesViewModel(
         val response = movieRepository.searchMovies(query)
         _searchedMovies.postValue(handleMoviesResponse(response))
     }
-//
-//    fun getFavourites(): List<Movie>? = movieRepository.getMovies()
 
+    suspend fun getFavourites(): List<CachedMovie>? = movieRepository.getMovies()
 
 
     private fun fetchPopularMovies() = viewModelScope.launch {
         popularMovies.postValue(Resource.Loading())
         val response = movieRepository.fetchPopularMovies()
         popularMovies.postValue(handleMoviesResponse(response))
-
     }
 
     private fun fetchTopRatedMovies() = viewModelScope.launch {

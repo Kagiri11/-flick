@@ -2,12 +2,14 @@ package com.example.upcomingmovies.repository
 
 
 import com.example.upcomingmovies.data.local.MovieDatabase
-import com.example.upcomingmovies.data.mappers.CachedMovie
+import com.example.upcomingmovies.data.local.CachedMovie
+import com.example.upcomingmovies.data.local.MovieDatabaseDao
 import com.example.upcomingmovies.data.network.RetrofitInstance
-import com.example.upcomingmovies.models.Movie
 
-class MovieRepository {
+class MovieRepository{
+    private val dao = MovieDatabase.INSTANCE?.movieDatabaseDao
 
+    fun getMoviesCount()= dao?.moviesCount()
     suspend fun fetchPopularMovies()= RetrofitInstance.api.fetchMovies()
 
     suspend fun fetchTopRatedMovies()=RetrofitInstance.api.fetchTopRatedMovies()
@@ -24,7 +26,7 @@ class MovieRepository {
 
     suspend fun searchMovies(query:String) = RetrofitInstance.api.searchMovies(query)
 
-    fun getMovies()= MovieDatabase.INSTANCE?.movieDatabaseDao?.getFavourites()
+    suspend fun getMovies()= dao?.getFavourites()
 
-    suspend fun addFavourite(movie: CachedMovie) = MovieDatabase.INSTANCE?.movieDatabaseDao?.addFavourite(movie)
+    suspend fun addFavourite(movie: CachedMovie) = dao?.addFavourite(movie)
 }

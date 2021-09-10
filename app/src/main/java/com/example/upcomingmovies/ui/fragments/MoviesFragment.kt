@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.upcomingmovies.R
@@ -16,13 +17,11 @@ import com.example.upcomingmovies.ui.adapters.PopularMoviesAdapter
 import com.example.upcomingmovies.ui.adapters.TopRatedMoviesAdapter
 import com.example.upcomingmovies.ui.adapters.UpcomingMoviesAdapter
 import com.example.upcomingmovies.ui.viewmodels.MoviesViewModel
-import com.example.upcomingmovies.ui.viewmodels.ViewModelFactory
 import com.example.upcomingmovies.utils.Resource
 import kotlinx.android.synthetic.main.fragment_movies.*
 
 class MoviesFragment : Fragment() {
-    private lateinit var viewModel: MoviesViewModel
-    private lateinit var viewModelFactory: ViewModelFactory
+    val viewModel:MoviesViewModel by viewModels()
     private lateinit var binding: FragmentMoviesBinding
     private val upcomingMoviesAdapter = UpcomingMoviesAdapter()
     private val popularMoviesAdapter = PopularMoviesAdapter()
@@ -33,8 +32,7 @@ class MoviesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_movies, container, false)
-        val application = requireNotNull(this.activity).application
-        val movieRepo = MovieRepository()
+
         popularMoviesAdapter.setOnItemClickListener {
             val bundle = Bundle().apply {
                 putSerializable("movie",it)
@@ -53,9 +51,6 @@ class MoviesFragment : Fragment() {
             }
             findNavController().navigate(R.id.action_moviesFragment_to_movieDetailsFragment,bundle)
         }
-
-        viewModelFactory = ViewModelFactory(movieRepo, application)
-        viewModel = ViewModelProvider(this, viewModelFactory).get(MoviesViewModel::class.java)
 
         viewModel.popularMovies.observe(viewLifecycleOwner, { response ->
             when (response) {

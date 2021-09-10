@@ -1,4 +1,4 @@
-package com.example.upcomingmovies.data.mappers
+package com.example.upcomingmovies.data.local
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

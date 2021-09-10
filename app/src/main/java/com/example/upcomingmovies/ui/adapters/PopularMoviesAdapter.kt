@@ -13,6 +13,7 @@ import com.example.upcomingmovies.R
 import com.example.upcomingmovies.databinding.ItemMovieBinding
 import com.example.upcomingmovies.models.Movie
 import kotlinx.android.synthetic.main.item_movie.view.*
+import kotlinx.android.synthetic.main.item_toprated_movies.view.*
 
 class PopularMoviesAdapter: RecyclerView.Adapter<PopularMoviesAdapter.PopularMoviesViewHolder>(){
     class PopularMoviesViewHolder(binding: ItemMovieBinding): RecyclerView.ViewHolder(binding.root)

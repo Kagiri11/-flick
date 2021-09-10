@@ -10,34 +10,26 @@ import android.view.View.GONE
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Observer
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.upcomingmovies.R
+import com.example.upcomingmovies.data.mappers.CacheMapper
 import com.example.upcomingmovies.databinding.FragmentMovieDetailsBinding
 import com.example.upcomingmovies.repository.MovieRepository
 import com.example.upcomingmovies.ui.adapters.CastAdapter
-import com.example.upcomingmovies.ui.adapters.ReviewsAdapter
 import com.example.upcomingmovies.ui.adapters.SimilarMoviesAdapter
-import com.example.upcomingmovies.ui.adapters.TopRatedMoviesAdapter
 import com.example.upcomingmovies.ui.viewmodels.MovieDetailsViewModel
-import com.example.upcomingmovies.ui.viewmodels.MovieDetailsViewModelFactory
-import com.example.upcomingmovies.ui.viewmodels.MoviesViewModel
-import com.example.upcomingmovies.ui.viewmodels.ViewModelFactory
 import com.example.upcomingmovies.utils.Resource
-import com.like.OnLikeListener
 import kotlinx.android.synthetic.main.fragment_movie_details.*
 
 class MovieDetailsFragment : Fragment() {
-    private lateinit var moviesViewModel : MoviesViewModel
-    lateinit var detailsViewModel: MovieDetailsViewModel
-    private lateinit var viewModelFactory: ViewModelFactory
-    private lateinit var movieDetailsViewModelFactory: MovieDetailsViewModelFactory
+
+    private val detailsViewModel: MovieDetailsViewModel by viewModels()
     private val castAdapter = CastAdapter()
     private val similarMoviesAdapter = SimilarMoviesAdapter()
-    private val reviewsAdapter = ReviewsAdapter()
     lateinit var binding : FragmentMovieDetailsBinding
     private val args :  MovieDetailsFragmentArgs by navArgs()
     @SuppressLint("SetTextI18n", "ResourceAsColor")
@@ -47,23 +39,16 @@ class MovieDetailsFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding= DataBindingUtil.inflate(inflater,R.layout.fragment_movie_details,container,false)
-        val application = requireNotNull(this.activity).application
-        val movieRepo = MovieRepository()
         val movie = args.movie
-
-        viewModelFactory=ViewModelFactory(movieRepo,application)
-        movieDetailsViewModelFactory=MovieDetailsViewModelFactory(movieRepo,application)
-        moviesViewModel = ViewModelProvider(this,viewModelFactory).get(MoviesViewModel::class.java)
-        detailsViewModel= ViewModelProvider(this,movieDetailsViewModelFactory).get(MovieDetailsViewModel::class.java)
-        val configuration = "https://image.tmdb.org/t/p/w500"
-//        binding.tvSpecificMovieName.text =movie.title
         binding.tvSpecificMovieYear.text = "Year: "+movie.release_date.take(4)
 
         binding.ivBack.setOnClickListener {
             findNavController().navigateUp()
         }
         binding.favourite.setOnClickListener {
-//            detailsViewModel.addFavourite(movie)
+            val cachedMovie = CacheMapper().mapToEntity(movie)
+            detailsViewModel.addFavourite(cachedMovie)
+            favourite.background = resources.getDrawable(R.drawable.ic_favorite)
             Toast.makeText(this.requireContext(),"${movie.title} added to favourites",Toast.LENGTH_LONG).show()
         }
 
@@ -73,7 +58,7 @@ class MovieDetailsFragment : Fragment() {
             getMovieReviews(movie.id)
             getSimilarMovies(movie.id)
         }
-        detailsViewModel.movieDetails.observe(viewLifecycleOwner,{  response->
+        detailsViewModel.movieDetails.observe(viewLifecycleOwner,{ response->
             when(response){
                 is Resource.Success-> response.data?.let { movieDetails ->
                     binding.tvSpecificMovieName.text = movieDetails.title
@@ -94,7 +79,7 @@ class MovieDetailsFragment : Fragment() {
 
         })
 
-        detailsViewModel.cast.observe(viewLifecycleOwner,{  response->
+        detailsViewModel.cast.observe(viewLifecycleOwner,{ response->
             when(response){
                 is Resource.Success-> response.data?.let { castDetails ->
                     binding.tvSpecificMovieDirector.text =  "Dir: "+castDetails.crew[1].name
@@ -112,7 +97,7 @@ class MovieDetailsFragment : Fragment() {
 
         })
 
-        detailsViewModel.similarMovies.observe(viewLifecycleOwner,{  response->
+        detailsViewModel.similarMovies.observe(viewLifecycleOwner,{ response->
             when(response){
                 is Resource.Success-> response.data?.let { movieResponse ->
                     similarMoviesAdapter.differ.submitList(movieResponse.results)
@@ -129,7 +114,7 @@ class MovieDetailsFragment : Fragment() {
 
         })
 
-        detailsViewModel.reviews.observe(viewLifecycleOwner,{  response->
+        detailsViewModel.reviews.observe(viewLifecycleOwner,{ response->
             when(response){
                 is Resource.Success-> response.data?.let { reviewResponse ->
                     if(reviewResponse.reviews.isNullOrEmpty()) {

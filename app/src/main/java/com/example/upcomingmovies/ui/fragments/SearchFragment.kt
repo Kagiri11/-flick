@@ -11,13 +11,13 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.get
 import androidx.navigation.fragment.findNavController
 import com.example.upcomingmovies.R
 import com.example.upcomingmovies.databinding.FragmentSearchBinding
 import com.example.upcomingmovies.repository.MovieRepository
 import com.example.upcomingmovies.ui.adapters.SearchAdapter
 import com.example.upcomingmovies.ui.viewmodels.MoviesViewModel
-import com.example.upcomingmovies.ui.viewmodels.ViewModelFactory
 import com.example.upcomingmovies.utils.Resource
 import kotlinx.android.synthetic.main.fragment_search.*
 import kotlinx.coroutines.Job
@@ -26,8 +26,7 @@ import kotlinx.coroutines.launch
 
 class SearchFragment : Fragment() {
     private lateinit var binding: FragmentSearchBinding
-    private lateinit var viewModel: MoviesViewModel
-    private lateinit var viewModelFactory: ViewModelFactory
+    private val viewModel : MoviesViewModel by viewModels()
     private val adapter = SearchAdapter()
 
     @SuppressLint("SetTextI18n")
@@ -41,10 +40,6 @@ class SearchFragment : Fragment() {
             }
             findNavController().navigate(R.id.action_searchFragment_to_movieDetailsFragment, bundle)
         }
-        val application = requireNotNull(this.activity).application
-        val movieRepo = MovieRepository()
-        viewModelFactory = ViewModelFactory(movieRepo, application)
-        viewModel = ViewModelProvider(this, viewModelFactory).get(MoviesViewModel::class.java)
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_search, container, false)
         var job: Job? = null

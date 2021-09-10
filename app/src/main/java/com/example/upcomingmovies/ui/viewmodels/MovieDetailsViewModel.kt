@@ -1,7 +1,7 @@
 package com.example.upcomingmovies.ui.viewmodels
 
-import android.app.Application
 import androidx.lifecycle.*
+import com.example.upcomingmovies.data.local.CachedMovie
 import com.example.upcomingmovies.models.*
 import com.example.upcomingmovies.repository.MovieRepository
 import com.example.upcomingmovies.utils.Resource
@@ -9,9 +9,9 @@ import kotlinx.coroutines.launch
 import retrofit2.Response
 
 class MovieDetailsViewModel(
-    private val movieRepository: MovieRepository,
-    application: Application
-) : AndroidViewModel(application) {
+
+) : ViewModel() {
+    private val movieRepository= MovieRepository()
     private val _movieDetails = MutableLiveData<Resource<MovieDetails>>()
     val movieDetails: LiveData<Resource<MovieDetails>> get() = _movieDetails
 
@@ -45,11 +45,11 @@ class MovieDetailsViewModel(
         _cast.postValue(handleCastResponse(cast))
     }
 
-//    fun addFavourite(movie: Movie){
-//        viewModelScope.launch {
-//            movieRepository.addFavourite(movie)
-//        }
-//    }
+    fun addFavourite(cachedMovie: CachedMovie){
+        viewModelScope.launch {
+            movieRepository.addFavourite(cachedMovie)
+        }
+    }
 
 
     private fun handleDetailResponse(response: Response<MovieDetails>): Resource<MovieDetails> {

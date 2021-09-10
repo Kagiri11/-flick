@@ -43,7 +43,6 @@ class UpcomingMoviesAdapter: RecyclerView.Adapter<UpcomingMoviesAdapter.Upcoming
         val movieImage = configuration+movie.poster_path
         holder.itemView.apply {
             tv_upcoming_movie_name.text=movie.title
-            tv_upcoming_movie_genres.text = "${movie.genre_ids}"
             Glide.with(this).load(movieImage).into(iv_upcoming_movie)
             setOnClickListener {
                 onItemClickListener?.let {

@@ -1,4 +1,4 @@
-# FLICK [Still under construction]
+# FLICK [Still under development]
 🎬Flick is
 an Android app that consumes the TMDB API to get details about upcoming movies, popular movies, top rated movies and shows in general. This app has been built using Kotlin as the base programming language. While building Flick, I am trying to follow the MVVM architecture.
 
@@ -37,10 +37,24 @@ As it is described in its official [documentation](https://square.github.io/retr
 
  * Create model classes
 
-The best way to use retrofit is first of all, create the model classes that your application needs. These will be fleshed up by the JSON body from the network calls made.
+To use retrofit first of all create the model classes (data classes) that your application needs. These will be fleshed up by the JSON body from the network calls made.
 
- * Create the API service
+ * Create the API service 
+
 Setup an interface to host all the HTTP calls to be performed by your application.
+
+ * Provide the instance of Retrofit
+
+ If you are using dependency injection, you can provide a dependency for the instance of Retrofit in your network module. So simply its just the instrument that will do the literal interal with with the API as you will provide it the base url, converter factory and a client if need be.
+        ```
+        class RetrofitInstance{
+                val retrofit = Retrofit.Builder().baseUrl(BASE_URL)
+                        .addConverterFactory(GSonConverterFactory.create())
+                        .build()
+                val api = retrofit.create(NetworkService::class.java)
+        }
+
+        ```
 
 
 ## Motion Layout
