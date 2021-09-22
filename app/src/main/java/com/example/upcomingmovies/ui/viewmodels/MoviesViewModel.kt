@@ -27,12 +27,6 @@ class MoviesViewModel() : ViewModel() {
         emit(movieRepository.getMovies())
     }
 
-    init {
-        fetchUpcomingMovies()
-        fetchPopularMovies()
-        fetchTopRatedMovies()
-    }
-
     fun searchMovies(query: String) = viewModelScope.launch {
         _searchedMovies.postValue(Resource.Loading())
         val response = movieRepository.searchMovies(query)
@@ -42,19 +36,19 @@ class MoviesViewModel() : ViewModel() {
     suspend fun getFavourites(): List<CachedMovie>? = movieRepository.getMovies()
 
 
-    private fun fetchPopularMovies() = viewModelScope.launch {
+     fun fetchPopularMovies() = viewModelScope.launch {
         popularMovies.postValue(Resource.Loading())
         val response = movieRepository.fetchPopularMovies()
         popularMovies.postValue(handleMoviesResponse(response))
     }
 
-    private fun fetchTopRatedMovies() = viewModelScope.launch {
+     fun fetchTopRatedMovies() = viewModelScope.launch {
         topRatedMovies.postValue(Resource.Loading())
         val response = movieRepository.fetchTopRatedMovies()
         topRatedMovies.postValue(handleMoviesResponse(response))
     }
 
-    private fun fetchUpcomingMovies() = viewModelScope.launch {
+     fun fetchUpcomingMovies() = viewModelScope.launch {
         upcomingMovies.postValue(Resource.Loading())
         val response = movieRepository.fetchUpcomingMovies()
         upcomingMovies.postValue(handleMoviesResponse(response))

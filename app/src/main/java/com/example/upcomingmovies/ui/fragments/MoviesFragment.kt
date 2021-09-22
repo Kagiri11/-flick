@@ -118,4 +118,13 @@ class MoviesFragment : Fragment() {
         return binding.root
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewModel.apply {
+            fetchUpcomingMovies()
+            fetchTopRatedMovies()
+            fetchPopularMovies()
+        }
+    }
+
 }
