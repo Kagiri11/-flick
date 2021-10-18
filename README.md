@@ -37,7 +37,20 @@ A layer should not know about the activities of a layer above it but a layer can
 This is the most abstract layer of our application. It defines the business logic of our application and the necessary models of entities.
 What goes in the domain layer?
 + **Entity models**: Components that bundle the info that will be used in our application.
-+ **Repository Declarations**: Defenitions you want implemented by repositories from other layers.
++ **Repository Declarations**: Definitions you want implemented by repositories from other layers.
++ ** Use cases**: Are objects that have just one action, to do something specific by utilizing the repository.
+
+ 2. **Data**
+
+This layer acts as the entry points of data that we require in our application. These can either be data from remote infrastructure or data persisted locally.
+What goes in the data layer?
++ **Repository implementations**: These implement the repository declared in our domain layer
++ **Service Declarations**: These artifacts are responsible for providing data and are the ones that feed the repository class.
+
+3. **Presentation**
+
+This is the layer that contains UI related business
+
 
 
     
