@@ -31,8 +31,12 @@ The different parts of this app are represented by different layers of circles a
 Inner circles tend to contain the business rules of our application.
 A layer should not know about the activities of a layer above it but a layer can understand components of a layer beneath it.
 
-MVVM (Model View ViewModel) is a pattern that primarily helps in separation of concerns for our applications. You see when creating an application, it is best to ensure that there is'nt a mixture of presentation logic and business logic. I like to visualise MVVM as V | VM | M . This is so as to leave the actions for value and data processing to the VM. Presentational tasks are left to the view to handle. Implementing this gets you sort of a miniature front-backend style. That is how I see it.
-The Model I like to think of it as a sort of data handler class. The data in the Model is used in caching and access by say repositories.
+### Layers
+ 1. **Domain**
+This is the most abstract layer of our application. It defines the business logic of our application and the necessary models of entities.
+    What go is the domain layer?
+
+
 
 ## Still cooking...
 I am still in the process of finishing up this app, I am yet to implement the search and favourites screens. Oh! and for the favorites, I will employ Room to make things easier. I have a repository called MyQuotes where I talk about an app I implemented Room with -if interested, please do check it out. 
