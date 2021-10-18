@@ -32,7 +32,7 @@ Inner circles tend to contain the business rules of our application.
 A layer should not know about the activities of a layer above it but a layer can understand components of a layer beneath it.
 
 ### Layers
- 1. **Domain**
+**1. Domain**
 
 This is the most abstract layer of our application. It defines the business logic of our application and the necessary models of entities.
 What goes in the domain layer?
@@ -40,14 +40,14 @@ What goes in the domain layer?
 + **Repository Declarations**: Definitions you want implemented by repositories from other layers.
 + ** Use cases**: Are objects that have just one action, to do something specific by utilizing the repository.
 
- 2. **Data**
+**2. Data**
 
 This layer acts as the entry points of data that we require in our application. These can either be data from remote infrastructure or data persisted locally.
 What goes in the data layer?
 + **Repository implementations**: These implement the repository declared in our domain layer
 + **Service Declarations**: These artifacts are responsible for providing data and are the ones that feed the repository class.
 
-3. **Presentation**
+**3. Presentation**
 
 This is the layer that contains UI related business
 
