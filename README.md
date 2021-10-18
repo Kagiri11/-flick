@@ -33,10 +33,11 @@ A layer should not know about the activities of a layer above it but a layer can
 
 ### Layers
  1. **Domain**
+
 This is the most abstract layer of our application. It defines the business logic of our application and the necessary models of entities.
-    What go is the domain layer?
+What goes in the domain layer?
++ **Entity models**: Components that bundle the info that will be used in our application.
++ **Repository Declarations**: Defenitions you want implemented by repositories from other layers.
 
 
-
-## Still cooking...
-I am still in the process of finishing up this app, I am yet to implement the search and favourites screens. Oh! and for the favorites, I will employ Room to make things easier. I have a repository called MyQuotes where I talk about an app I implemented Room with -if interested, please do check it out. 
+    
