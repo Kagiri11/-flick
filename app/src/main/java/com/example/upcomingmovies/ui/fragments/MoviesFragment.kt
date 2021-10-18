@@ -8,11 +8,9 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.upcomingmovies.R
 import com.example.upcomingmovies.databinding.FragmentMoviesBinding
-import com.example.upcomingmovies.repository.MovieRepository
 import com.example.upcomingmovies.ui.adapters.PopularMoviesAdapter
 import com.example.upcomingmovies.ui.adapters.TopRatedMoviesAdapter
 import com.example.upcomingmovies.ui.adapters.UpcomingMoviesAdapter

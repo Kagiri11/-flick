@@ -20,7 +20,7 @@
 
         <argument
             android:name="movie"
-            app:argType="com.example.upcomingmovies.models.Movie" />
+            app:argType="com.example.domain.models.Movie" />
     </fragment>
     <fragment
         android:id="@+id/favouritesFragment"

@@ -1,19 +1,21 @@
 package com.example.upcomingmovies.ui.viewmodels
 
 import androidx.lifecycle.*
-import com.example.upcomingmovies.data.local.CachedMovie
+import com.example.data.local.CachedMovie
+import com.example.data.remote.dto.CastDetails
+import com.example.data.remote.dto.MovieDetailsDto
+import com.example.data.remote.dto.MovieResponseDto
+import com.example.data.repository.MovieRepositoryImpl
+import com.example.domain.utils.Resource
 import com.example.upcomingmovies.models.*
-import com.example.upcomingmovies.repository.MovieRepository
-import com.example.upcomingmovies.utils.Resource
 import kotlinx.coroutines.launch
-import retrofit2.Response
 
 class MovieDetailsViewModel(
 
 ) : ViewModel() {
-    private val movieRepository= MovieRepository()
-    private val _movieDetails = MutableLiveData<Resource<MovieDetails>>()
-    val movieDetails: LiveData<Resource<MovieDetails>> get() = _movieDetails
+    private val movieRepository= MovieRepositoryImpl()
+    private val _movieDetails = MutableLiveData<Resource<MovieDetailsDto>>()
+    val movieDetails: LiveData<Resource<MovieDetailsDto>> get() = _movieDetails
 
     private val _cast = MutableLiveData<Resource<CastDetails>>()
     val cast: LiveData<Resource<CastDetails>> get() = _cast
@@ -21,8 +23,8 @@ class MovieDetailsViewModel(
     private val _reviews = MutableLiveData<Resource<ReviewResponse>>()
     val reviews: LiveData<Resource<ReviewResponse>> get() = _reviews
 
-    private val _similarMovies = MutableLiveData<Resource<MovieResponse>>()
-    val similarMovies : LiveData<Resource<MovieResponse>> get() = _similarMovies
+    private val _similarMovies = MutableLiveData<Resource<MovieResponseDto>>()
+    val similarMovies : LiveData<Resource<MovieResponseDto>> get() = _similarMovies
 
     fun getMovieReviews(movieId: Int)=viewModelScope.launch {
         val reviews  = movieRepository.fetchMovieReviews(movieId)
@@ -31,7 +33,7 @@ class MovieDetailsViewModel(
 
     fun getSimilarMovies(movieId: Int)=viewModelScope.launch {
         val movies =movieRepository.fetchSimilarMovies(movieId)
-        _similarMovies.postValue(handleMoviesResponse(movies))
+        _similarMovies.postValue(Resource.Success(movies))
     }
 
 
@@ -45,14 +47,14 @@ class MovieDetailsViewModel(
         _cast.postValue(handleCastResponse(cast))
     }
 
-    fun addFavourite(cachedMovie: CachedMovie){
-        viewModelScope.launch {
-            movieRepository.addFavourite(cachedMovie)
-        }
-    }
+//    fun addFavourite(cachedMovie: CachedMovie){
+//        viewModelScope.launch {
+//            movieRepository.addFavourite(cachedMovie)
+//        }
+//    }
 
 
-    private fun handleDetailResponse(response: Response<MovieDetails>): Resource<MovieDetails> {
+    private fun handleDetailResponse(response: Response<MovieDetailsDto>): Resource<MovieDetailsDto> {
         if (response.isSuccessful) {
             response.body()?.let { resultResponse ->
                 return Resource.Success(resultResponse)
@@ -62,7 +64,7 @@ class MovieDetailsViewModel(
         return Resource.Error(response.message())
     }
 
-    private fun handleMoviesResponse(response: Response<MovieResponse>):Resource<MovieResponse>{
+    private fun handleMoviesResponse(response: Response<MovieResponseDto>):Resource<MovieResponseDto>{
         if (response.isSuccessful){
             response.body()?.let { resultResponse->
                 return Resource.Success(resultResponse)

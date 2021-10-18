@@ -11,14 +11,12 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.upcomingmovies.R
-import com.example.upcomingmovies.data.mappers.CacheMapper
+import com.example.data.local.mappers.CacheMapper
 import com.example.upcomingmovies.databinding.FragmentMovieDetailsBinding
-import com.example.upcomingmovies.repository.MovieRepository
 import com.example.upcomingmovies.ui.adapters.CastAdapter
 import com.example.upcomingmovies.ui.adapters.SimilarMoviesAdapter
 import com.example.upcomingmovies.ui.viewmodels.MovieDetailsViewModel

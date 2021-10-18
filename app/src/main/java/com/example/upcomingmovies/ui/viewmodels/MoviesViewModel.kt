@@ -2,22 +2,20 @@ package com.example.upcomingmovies.ui.viewmodels
 
 
 import androidx.lifecycle.*
-import com.example.upcomingmovies.data.local.CachedMovie
-import com.example.upcomingmovies.data.local.MovieDatabaseDao
-import com.example.upcomingmovies.models.MovieResponse
-import com.example.upcomingmovies.repository.MovieRepository
+import com.example.data.local.CachedMovie
+import com.example.data.remote.dto.MovieResponseDto
 import com.example.upcomingmovies.utils.Resource
 import kotlinx.coroutines.launch
 import retrofit2.Response
 
 class MoviesViewModel() : ViewModel() {
     private val movieRepository=MovieRepository()
-    val popularMovies: MutableLiveData<Resource<MovieResponse>> = MutableLiveData()
-    val topRatedMovies: MutableLiveData<Resource<MovieResponse>> = MutableLiveData()
-    val upcomingMovies: MutableLiveData<Resource<MovieResponse>> = MutableLiveData()
+    val popularMovies: MutableLiveData<Resource<MovieResponseDto>> = MutableLiveData()
+    val topRatedMovies: MutableLiveData<Resource<MovieResponseDto>> = MutableLiveData()
+    val upcomingMovies: MutableLiveData<Resource<MovieResponseDto>> = MutableLiveData()
 
-    private val _searchedMovies: MutableLiveData<Resource<MovieResponse>> = MutableLiveData()
-    val searchedMovies: LiveData<Resource<MovieResponse>> = _searchedMovies
+    private val _searchedMovies: MutableLiveData<Resource<MovieResponseDto>> = MutableLiveData()
+    val searchedMovies: LiveData<Resource<MovieResponseDto>> = _searchedMovies
 
     val favouriteMoviesCount = liveData {
         emit(movieRepository.getMoviesCount())
@@ -54,7 +52,7 @@ class MoviesViewModel() : ViewModel() {
         upcomingMovies.postValue(handleMoviesResponse(response))
     }
 
-    private fun handleMoviesResponse(response: Response<MovieResponse>): Resource<MovieResponse> {
+    private fun handleMoviesResponse(response: Response<MovieResponseDto>): Resource<MovieResponseDto> {
         if (response.isSuccessful) {
             response.body()?.let { resultResponse ->
                 return Resource.Success(resultResponse)

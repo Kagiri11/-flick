@@ -7,11 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import com.example.upcomingmovies.R
-import com.example.upcomingmovies.data.mappers.CacheMapper
+import com.example.data.local.mappers.CacheMapper
 import com.example.upcomingmovies.databinding.FragmentFavouritesBinding
-import com.example.upcomingmovies.databinding.FragmentSearchBinding
 import com.example.upcomingmovies.ui.adapters.SearchAdapter
 import com.example.upcomingmovies.ui.viewmodels.MoviesViewModel
 
